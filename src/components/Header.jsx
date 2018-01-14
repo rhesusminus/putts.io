@@ -24,4 +24,4 @@ class Header extends React.Component {
   }
 }
 
-export default compose(withRouter)(Header)
+export default compose(withRouter)(Header);

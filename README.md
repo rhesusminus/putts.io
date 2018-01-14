@@ -1,9 +1,9 @@
 ## putts.io-client
+React & Redux app that is going to be a Progressive Web App at some point of it's lifecycle.
 
-– [React FontAwesome](https://github.com/FortAwesome/react-fontawesome)
+### development
+Basic stuff. `git clone`, `yarn install`, etc.
 
-
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
-
-Below you will find some information on how to perform common tasks.<br>
-You can find the most recent version of this guide [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
+Useful links for development:
+* [React FontAwesome](https://github.com/FortAwesome/react-fontawesome)
+* [Create React App -guide](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md)
