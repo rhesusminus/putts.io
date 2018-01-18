@@ -2,39 +2,39 @@ import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT_SUCCESS } from '../
 
 const initialState = {
   isFetching: false,
-  isAuthenticated: localStorage.getItem('putts.io-jwt-token') ? true : false
+  isAuthenticated: localStorage.getItem('putts.io-jwt-token') ? true : false,
 };
 
 export default (state = initialState, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case LOGIN_REQUEST:
       return Object.assign({}, state, {
         isFetching: true,
         isAuthenticated: false,
-        user: action.credentials
+        user: action.credentials,
       });
 
     case LOGIN_SUCCESS:
       return Object.assign({}, state, {
         isFetching: false,
         isAuthenticated: true,
-        errorMessage: ''
+        errorMessage: '',
       });
 
     case LOGIN_FAILURE:
       return Object.assign({}, state, {
         isFetching: false,
         isAuthenticated: false,
-        errorMessage: action.message
+        errorMessage: action.message,
       });
 
     case LOGOUT_SUCCESS:
       return Object.assign({}, state, {
         isFetching: true,
-        isAuthenticated: false
+        isAuthenticated: false,
       });
 
     default:
       return state;
-  };
-}
+  }
+};

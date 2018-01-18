@@ -2,6 +2,7 @@ import React from 'react';
 import { compose, bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import { loginUser } from '../actions/auth-actions';
 import googleLogo from '../assests/svg/btn_google_light.svg';
 import '../css/Signin.css';
 
@@ -13,8 +14,12 @@ class Signin extends React.Component {
 
   handleLogin = event => {
     event.preventDefault();
-    localStorage.setItem('putts.io-jwt-token', '...');
-    this.props.history.push('/dashboard');
+    // localStorage.setItem('putts.io-jwt-token', '...');
+    // this.props.history.push('/dashboard');
+    this.props.loginUser({
+      email: this.state.email,
+      password: this.state.password
+    });
   };
 
   handleInputChange = event => {
@@ -33,7 +38,6 @@ class Signin extends React.Component {
     const { email, password } = this.state;
     return (
       <div className="Signin">
-        <h3>Login to putts.io</h3>
         <div className="Signin-inputs">
           <input type="text" name="email" placeholder="Email" value={email} onChange={this.handleInputChange} />
           <br />
@@ -49,7 +53,7 @@ class Signin extends React.Component {
         </button>
         <br />
         <button className="Signin-with-Google-btn btn">
-          <img src={googleLogo} alt="Google logo" />Sign in with Google
+          <img src={googleLogo} width="50" height="50" alt="Google logo" />Sign in with Google
         </button>
         <br />
         <button className="btn">Continue with Facebook</button>
@@ -59,6 +63,6 @@ class Signin extends React.Component {
 }
 
 const mapStateToProps = ({ auth }) => ({ errorMessage: auth.errorMessage });
-// const mapDispatchToProps = (dispatch) => bindActionCreators({ loginUser }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ loginUser }, dispatch);
 
-export default compose(withRouter, connect(mapStateToProps))(Signin);
+export default compose(withRouter, connect(mapStateToProps, mapDispatchToProps))(Signin);
