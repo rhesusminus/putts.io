@@ -1,0 +1,14 @@
+.Register-buttons {
+  display: inline-block;
+  width: 100%;
+}
+
+.Register-buttons__register {
+  width: 48%;
+  float: left;
+}
+
+.Register-buttons__cancel {
+  width: 48%;
+  float: right;
+}
