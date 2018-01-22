@@ -1,11 +1,8 @@
 .Signin {
+  background-color: palevioletred;
+  padding: 16px;
+  height: 100vh;
   display: flex;
-  align-items: center;
   flex-direction: column;
-}
-
-.Signin-inputs, .Signin-login-btn {
-}
-
-.Signin-register-btn {
+  justify-content: center;
 }
