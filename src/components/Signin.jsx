@@ -1,9 +1,9 @@
 import React from 'react';
-import { compose, bindActionCreators } from 'redux';
+import PropTypes from 'prop-types';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { loginUser } from '../actions/auth-actions';
-import googleLogo from '../assests/svg/btn_google_light.svg';
 import '../css/Signin.css';
 
 class Signin extends React.Component {
@@ -12,15 +12,18 @@ class Signin extends React.Component {
     password: ''
   };
 
-  handleLogin = event => {
-    event.preventDefault();
-    // localStorage.setItem('putts.io-jwt-token', '...');
-    // this.props.history.push('/dashboard');
+  handleLogin = () => {
     this.props.loginUser({
       email: this.state.email,
       password: this.state.password
     });
   };
+
+  onKeyPress = event => {
+    if (event.key === 'Enter') {
+      this.handleLogin();
+    }
+  }
 
   handleInputChange = event => {
     const target = event.target;
@@ -36,12 +39,15 @@ class Signin extends React.Component {
 
   render() {
     const { email, password } = this.state;
+    const { errorMessage } = this.props;
+
     return (
       <div className="Signin">
+        {errorMessage && <div className="Signin-errormsg">{errorMessage}</div> }
         <div className="Signin-inputs">
           <input type="text" name="email" placeholder="Email" value={email} onChange={this.handleInputChange} />
           <br />
-          <input type="password" name="password" placeholder="Password" value={password} onChange={this.handleInputChange} />
+          <input type="password" name="password" placeholder="Password" value={password} onChange={this.handleInputChange} onKeyPress={this.onKeyPress} />
         </div>
         <br />
         <button className="Signin-login-btn btn" onClick={this.handleLogin}>
@@ -52,17 +58,22 @@ class Signin extends React.Component {
           Register
         </button>
         <br />
-        <button className="Signin-with-Google-btn btn">
-          <img src={googleLogo} width="50" height="50" alt="Google logo" />Sign in with Google
+        <button className="Signin-with-Google-btn btn" disabled>
+          Sign in with Google
         </button>
         <br />
-        <button className="btn">Continue with Facebook</button>
+        <button className="btn" disabled>Continue with Facebook</button>
       </div>
     );
   }
 }
 
+Signin.propTypes = {
+  loginUser: PropTypes.func.isRequired,
+  errorMessage: PropTypes.string,
+};
+
 const mapStateToProps = ({ auth }) => ({ errorMessage: auth.errorMessage });
 const mapDispatchToProps = dispatch => bindActionCreators({ loginUser }, dispatch);
 
-export default compose(withRouter, connect(mapStateToProps, mapDispatchToProps))(Signin);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Signin));

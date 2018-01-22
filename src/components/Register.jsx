@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import '../css/Register.css';
 
 class Register extends React.Component {
@@ -16,13 +17,19 @@ class Register extends React.Component {
     this.setState({ [name]: value });
   };
 
+  handleCancel = event => {
+    this.props.history.push('/');
+  }
+
   render() {
     const { name, email, displayName } = this.state;
     return (
       <div className="Register">
         <h1>Register</h1>
         <input type="text" placeholder="Name" name="name" value={name} onChange={this.handleInputChange} />
+        <br />
         <input type="text" placeholder="Email" name="email" value={email} onChange={this.handleInputChange} />
+        <br />
         <input
           type="text"
           placeholder="Display name"
@@ -34,11 +41,11 @@ class Register extends React.Component {
         <br />
         <div className="Register-buttons">
           <button className="Register-buttons__register btn">Register</button>
-          <button className="Register-buttons__cancel btn">Cancel</button>
+          <button className="Register-buttons__cancel btn" onClick={this.handleCancel}>Cancel</button>
         </div>
       </div>
     );
   }
 }
 
-export default Register;
+export default withRouter(Register);

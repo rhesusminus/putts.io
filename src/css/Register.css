@@ -1,3 +1,7 @@
+.Register {
+  padding: 16px;
+}
+
 .Register-buttons {
   display: inline-block;
   width: 100%;

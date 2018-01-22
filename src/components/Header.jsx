@@ -1,8 +1,7 @@
 import React from 'react';
-import { compose } from 'redux';
-import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome'
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import '../css/Header.css';
 
 class Header extends React.Component {
   state = {
@@ -24,4 +23,4 @@ class Header extends React.Component {
   }
 }
 
-export default compose(withRouter)(Header);
+export default withRouter(Header);
