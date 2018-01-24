@@ -1,5 +1,21 @@
 .Header {
-  padding: 16px 16px 0 16px;
-  height: 30px;
-  background-color: papayawhip;
+  padding: 16px;
+  min-height: 24px;
+  background-color: goldenrod;
+  display: flex;
+}
+
+.Header-nav-icon {
+  margin: 0;
+  text-align: left;
+  min-width: 56px;
+}
+
+.Header-title {
+  height: 100%;
+  padding-bottom: 4px;
+}
+
+.Header-action-icons {
+  margin-left: auto;
 }
