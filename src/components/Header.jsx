@@ -1,7 +1,27 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import { withStyles } from 'material-ui/styles';
+import AppBar from 'material-ui/AppBar';
+import Toolbar from 'material-ui/Toolbar';
+import Typography from 'material-ui/Typography';
+import Button from 'material-ui/Button';
+import IconButton from 'material-ui/IconButton';
+import MenuIcon from 'material-ui-icons/Menu';
 import '../css/Header.css';
+
+const styles = {
+  root: {
+    width: '100%',
+  },
+  flex: {
+    flex: 1,
+  },
+  menuButton: {
+    marginLeft: -12,
+    marginRight: 20,
+  },
+};
 
 class Header extends React.Component {
   state = {
@@ -14,13 +34,37 @@ class Header extends React.Component {
   }
 
   render() {
+    const { classes } = this.props;
+
     return (
+      <AppBar>
+        <Toolbar>
+        <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
+          <MenuIcon />
+        </IconButton>
+        <Typography type="title" color="inherit" className={classes.flex}>
+            putts.io
+          </Typography>
+          <Button color="inherit" onClick={this.handleLogout}>Logout</Button>
+        </Toolbar>
+      </AppBar>
+      /*
       <div className="Header">
-        <FontAwesomeIcon icon="user-circle" size="lg" /> displayName
-        <FontAwesomeIcon icon="cog" size="lg" pull="right" onClick={this.handleLogout} />
+        <div className="Header-nav-icon">
+          <FontAwesomeIcon className="Header-icon" icon="bars" size="lg" />
+        </div>
+        <div className="Header-title">putts.io</div>
+        <div className="Header-action-icons">
+          <button onClick={this.handleLogout}>logout</button>
+        </div>
       </div>
+      */
     )
   }
 }
 
-export default withRouter(Header);
+Header.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(withRouter(Header));

@@ -1,6 +1,5 @@
-.Signin {
-  background-color: palevioletred;
-  padding: 16px;
+.Signin form {
+  padding: 0 50px;
   height: 100vh;
   display: flex;
   flex-direction: column;
