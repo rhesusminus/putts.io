@@ -10,25 +10,12 @@ import Button from 'material-ui/Button';
 import '../css/Signin.css';
 
 const styles = theme => ({
-  container: {
-    display: 'flex',
-    flexWrap: 'wrap'
-  },
   textField: {
-    //marginLeft: theme.spacing.unit,
-    //marginRight: theme.spacing.unit,
     width: '100%'
-  },
-  menu: {
-    width: 200
   },
   button: {
-    // margin: theme.spacing.unit,
     width: '100%'
   },
-  input: {
-    display: 'none'
-  }
 });
 
 class Signin extends React.Component {
@@ -38,7 +25,9 @@ class Signin extends React.Component {
   };
 
   handleSubmit = event => {
-    event.preventDefault();
+    if (event) {
+      event.preventDefault();
+    }
     this.props.loginUser({
       email: this.state.email,
       password: this.state.password
@@ -46,7 +35,7 @@ class Signin extends React.Component {
   };
 
   onPasswordKeyPress = event => {
-    if (event.keyCode === 13) {
+    if (event.key === 'Enter') {
       this.handleSubmit();
     }
   };
@@ -76,6 +65,7 @@ class Signin extends React.Component {
             name="email"
             type="email"
             value={email}
+            inputstyle={{ fontSize: '5rem' }}
             className={classes.textField}
             margin="normal"
             onChange={this.handleInputChange}
@@ -88,6 +78,7 @@ class Signin extends React.Component {
             className={classes.textField}
             margin="normal"
             onChange={this.handleInputChange}
+            onKeyPress={this.onPasswordKeyPress}
           />
           <div className="Signin-buttons">
             <Button raised color="primary" onClick={this.handleSubmit} className={classes.button}>

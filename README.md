@@ -1,5 +1,5 @@
 ## putts.io-client
-React & Redux app that is going to be a Progressive Web App at some point of it's lifecycle.
+React & Redux app that is going to be a Progressive Web App at some point of it's lifecycle. And for now it's "mobile only"-app. We'll see if we need to refactor it to be more responsive ie. tablet, desktop, etc.
 
 ### development
 Basic stuff. `git clone`, `yarn install`, etc.
