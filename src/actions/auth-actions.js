@@ -6,35 +6,17 @@ const API_URI = process.env.REACT_APP_API_URI;
 
 const requestLogin = credentials => ({
   type: LOGIN_REQUEST,
-  isFetching: true,
-  isAuthenticated: false,
   credentials,
 });
 
 const receiveLogin = token => ({
   type: LOGIN_SUCCESS,
-  isFetching: false,
-  isAuthenticated: true,
   token,
 });
 
 const loginError = message => ({
   type: LOGIN_FAILURE,
-  isFetching: false,
-  isAuthenticated: false,
   message,
-});
-
-const requestLogout = () => ({
-  type: LOGOUT_REQUEST,
-  isFetching: true,
-  isAuthenticated: true,
-});
-
-const receiveLogout = () => ({
-  type: LOGOUT_SUCCESS,
-  isFetching: false,
-  isAuthenticated: false,
 });
 
 export const loginUser = ({ email, password }) => dispatch => {
@@ -63,7 +45,8 @@ export const loginUser = ({ email, password }) => dispatch => {
 };
 
 export const logoutUser = () => dispatch => {
-  dispatch(requestLogout());
+  dispatch({ type: LOGOUT_REQUEST });
   localStorage.removeItem('putts.io-jwt-token');
-  dispatch(receiveLogout());
+  dispatch({ type: LOGOUT_SUCCESS });
+  dispatch(push('/'));
 };

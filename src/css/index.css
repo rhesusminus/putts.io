@@ -4,6 +4,10 @@ body {
   font-family: sans-serif;
 }
 
+main {
+  padding: 56px 16px 0 16px;
+}
+
 /*
 input[type='text'],
 input[type='url'],

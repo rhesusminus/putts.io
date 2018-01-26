@@ -9,19 +9,13 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
       localStorage.getItem('putts.io-jwt-token') ? (
         <Component {...props} />
       ) : (
-        <Redirect
-          to={{
-            pathname: '/',
-            state: { from: props.location }
-          }}
-        />
+        <Redirect to={{ pathname: '/' }} />
       )
     }
   />
 );
 
 PrivateRoute.propTypes = {
-  location: PropTypes.string,
   component: PropTypes.func.isRequired
 };
 
