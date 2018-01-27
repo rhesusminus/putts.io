@@ -1,12 +1,30 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import { withStyles } from 'material-ui/styles';
+import TextField from 'material-ui/TextField';
+import Button from 'material-ui/Button';
+import Input from 'material-ui/Input';
 import '../css/Register.css';
+
+const styles = theme => ({
+  textField: {
+    width: '100%'
+  },
+  button: {
+    width: '100%'
+  }
+});
 
 class Register extends React.Component {
   state = {
     name: '',
     email: '',
-    displayName: ''
+    displayName: '',
+    file: null
+  };
+
+  handleFileChange = event => {
+    this.setState({ file: event.target.files[0] });
   };
 
   handleInputChange = event => {
@@ -19,33 +37,62 @@ class Register extends React.Component {
 
   handleCancel = event => {
     this.props.history.push('/');
-  }
+  };
 
   render() {
     const { name, email, displayName } = this.state;
+    const { classes } = this.props;
+
     return (
       <div className="Register">
-        <h1>Register</h1>
-        <input type="text" placeholder="Name" name="name" value={name} onChange={this.handleInputChange} />
-        <br />
-        <input type="text" placeholder="Email" name="email" value={email} onChange={this.handleInputChange} />
-        <br />
-        <input
+        <h2>Register new user</h2>
+        <TextField
+          label="Name"
+          name="name"
           type="text"
-          placeholder="Display name"
-          name="displayName"
-          value={displayName}
+          value={name}
+          inputstyle={{ fontSize: '5rem' }}
+          className={classes.textField}
+          margin="normal"
           onChange={this.handleInputChange}
         />
-        Picture selection goes here!<br />
+        <TextField
+          label="Email"
+          name="email"
+          type="email"
+          value={email}
+          inputstyle={{ fontSize: '5rem' }}
+          className={classes.textField}
+          margin="normal"
+          onChange={this.handleInputChange}
+        />
+        <TextField
+          label="Display name"
+          name="displayName"
+          type="text"
+          value={displayName}
+          inputstyle={{ fontSize: '5rem' }}
+          className={classes.textField}
+          margin="normal"
+          onChange={this.handleInputChange}
+        />
+        Picture:
+        <Input type="file" onChange={this.handleFileChange} />
+        <br />
         <br />
         <div className="Register-buttons">
-          <button className="Register-buttons__register btn">Register</button>
-          <button className="Register-buttons__cancel btn" onClick={this.handleCancel}>Cancel</button>
+          <Button raised color="primary" className={classes.button}>
+            Register new user
+          </Button>
+          <br />
+          <br />
+          <Button raised color="secondary" onClick={this.handleCancel} className={classes.button}>
+            Cancel
+          </Button>
         </div>
       </div>
     );
   }
 }
 
-export default withRouter(Register);
+export default withStyles(styles)(withRouter(Register));
