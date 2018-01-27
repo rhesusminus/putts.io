@@ -7,3 +7,5 @@ export { default as Header } from './Header';
 export { default as Profile } from './Profile';
 export { default as DashboardLayout } from './DashboardLayout';
 export { default as GameList } from './GameList';
+export { default as GameInfo } from './GameInfo';
+export { default as PasswordRecovery } from './PasswordRecovery';

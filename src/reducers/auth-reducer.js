@@ -2,8 +2,9 @@ import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT_SUCCESS } from '../
 
 const initialState = {
   isFetching: false,
-  isAuthenticated: localStorage.getItem('putts.io-jwt-token') ? true : false,
+  isAuthenticated: Boolean(localStorage.getItem('putts.io-jwt-token')),
   errorMessage: '',
+  user: null,
 };
 
 export default (state = initialState, action) => {
@@ -13,7 +14,7 @@ export default (state = initialState, action) => {
         ...state,
         isFetching: true,
         isAuthenticated: false,
-        user: action.credentials,
+        user: action.credentials.email,
       };
 
     case LOGIN_SUCCESS:
@@ -37,6 +38,7 @@ export default (state = initialState, action) => {
         ...state,
         isFetching: false,
         isAuthenticated: false,
+        user: null,
       };
 
     default:

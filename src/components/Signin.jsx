@@ -2,9 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { loginUser } from '../actions/auth-actions';
 import { withStyles } from 'material-ui/styles';
+import Typography from 'material-ui/Typography';
 import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
 import '../css/Signin.css';
@@ -15,7 +16,7 @@ const styles = theme => ({
   },
   button: {
     width: '100%'
-  },
+  }
 });
 
 class Signin extends React.Component {
@@ -94,10 +95,16 @@ class Signin extends React.Component {
             <Button raised color="secondary" disabled className={classes.button}>
               Sign in with Google
             </Button>
-            <br /><br />
+            <br />
+            <br />
             <Button raised color="secondary" disabled className={classes.button}>
               Continue with Facebook
             </Button>
+            <br />
+            <br />
+            <Link to="/password-recovery">
+              <Typography type="body1">Forgot password?</Typography>
+            </Link>
           </div>
         </form>
       </div>
