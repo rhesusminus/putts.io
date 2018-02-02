@@ -20,8 +20,12 @@ const loginError = message => ({
 });
 
 export const loginUser = ({ email, password }) => dispatch => {
+  const token = 'ABC'; // secret temporary token for testing purposes
   dispatch(requestLogin({ email, password }));
-
+  localStorage.setItem('putts.io-jwt-token', token);
+  dispatch(receiveLogin(token));
+  dispatch(push('/dashboard'));
+  /*
   return axios
     .post(`${API_URI}/signin`, { email, password })
     .then(({ data: { token } }) => {
@@ -42,6 +46,7 @@ export const loginUser = ({ email, password }) => dispatch => {
 
       return Promise.reject(error);
     });
+    */
 };
 
 export const logoutUser = () => dispatch => {
