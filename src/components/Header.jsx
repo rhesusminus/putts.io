@@ -29,11 +29,6 @@ class Header extends React.Component {
     anchorEl: null
   };
 
-  handleLogout = () => {
-    localStorage.removeItem('putts.io-jwt-token');
-    this.props.history.push('/');
-  };
-
   handleMenu = event => {
     this.setState({ anchorEl: event.currentTarget });
   };

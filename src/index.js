@@ -26,7 +26,7 @@ const composeEnhancers = composeWithDevTools({
 const store = createStore(
   rootReducer,
   {
-    /*  initial state */
+    /* initial state */
   },
   composeEnhancers(
     applyMiddleware(...middleware),
