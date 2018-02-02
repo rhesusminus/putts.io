@@ -5,9 +5,10 @@ import faUserCircle from '@fortawesome/fontawesome-free-solid/faUserCircle';
 import faBars from '@fortawesome/fontawesome-free-solid/faBars';
 import React from 'react';
 import { render } from 'react-dom';
-import { createStore, applyMiddleware, compose } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import reduxThunk from 'redux-thunk';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import createHistory from 'history/createBrowserHistory';
 import { ConnectedRouter, routerMiddleware } from 'react-router-redux';
 import rootReducer from './reducers/';
@@ -18,12 +19,18 @@ import './css/index.css';
 fontawesome.library.add(brands, faCog, faUserCircle, faBars);
 
 const history = createHistory();
+const middleware = [reduxThunk, routerMiddleware(history)];
+const composeEnhancers = composeWithDevTools({
+  // options like actionSanitizer, stateSanitizer
+});
 const store = createStore(
   rootReducer,
-  {},
-  compose(
-    applyMiddleware(reduxThunk, routerMiddleware(history)),
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+  {
+    /*  initial state */
+  },
+  composeEnhancers(
+    applyMiddleware(...middleware),
+    // other store enhancers if any
   ),
 );
 
