@@ -12,27 +12,25 @@ import '../css/Signin.css';
 
 const styles = theme => ({
   textField: {
-    width: '100%'
+    width: '100%',
   },
   button: {
-    width: '100%'
-  }
+    width: '100%',
+  },
 });
 
 class Signin extends React.Component {
   state = {
     email: '',
-    password: ''
+    password: '',
   };
 
   handleSubmit = event => {
+    const { email, password } = this.state;
     if (event) {
       event.preventDefault();
     }
-    this.props.loginUser({
-      email: this.state.email,
-      password: this.state.password
-    });
+    this.props.loginUser({ email, password });
   };
 
   onPasswordKeyPress = event => {
@@ -114,7 +112,8 @@ class Signin extends React.Component {
 
 Signin.propTypes = {
   loginUser: PropTypes.func.isRequired,
-  errorMessage: PropTypes.string
+  history: PropTypes.object.isRequired,
+  errorMessage: PropTypes.string,
 };
 
 const mapStateToProps = ({ auth }) => ({ errorMessage: auth.errorMessage });

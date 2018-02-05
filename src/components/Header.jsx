@@ -16,17 +16,17 @@ import '../css/Header.css';
 
 const styles = {
   flex: {
-    flex: 1
+    flex: 1,
   },
   menuButton: {
     marginLeft: -12,
-    marginRight: 20
-  }
+    marginRight: 20,
+  },
 };
 
 class Header extends React.Component {
   state = {
-    anchorEl: null
+    anchorEl: null,
   };
 
   handleMenu = event => {
@@ -76,11 +76,11 @@ class Header extends React.Component {
                 anchorEl={anchorEl}
                 anchorOrigin={{
                   vertical: 'top',
-                  horizontal: 'right'
+                  horizontal: 'right',
                 }}
                 transformOrigin={{
                   vertical: 'top',
-                  horizontal: 'right'
+                  horizontal: 'right',
                 }}
                 open={open}
                 onClose={this.handleClose}
@@ -98,7 +98,8 @@ class Header extends React.Component {
 }
 
 Header.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  logoutUser: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = ({ auth }) => ({ isAuthenticated: auth.isAuthenticated });

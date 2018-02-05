@@ -8,11 +8,11 @@ import '../css/Register.css';
 
 const styles = theme => ({
   textField: {
-    width: '100%'
+    width: '100%',
   },
   button: {
-    width: '100%'
-  }
+    width: '100%',
+  },
 });
 
 class Register extends React.Component {
@@ -20,7 +20,7 @@ class Register extends React.Component {
     name: '',
     email: '',
     displayName: '',
-    file: null
+    file: null,
   };
 
   handleFileChange = event => {
@@ -37,6 +37,11 @@ class Register extends React.Component {
 
   handleCancel = event => {
     this.props.history.push('/');
+  };
+
+  handleFormSubmit = event => {
+    event.preventDefault();
+    // send action from here
   };
 
   render() {

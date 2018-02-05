@@ -4,6 +4,8 @@ React & Redux app that is going to be a Progressive Web App at some point of it'
 ### development
 Basic stuff. `git clone`, `yarn install`, etc.
 
+We use [json-server](https://github.com/typicode/json-server) as a development server. Data is in `dev-server`-folder. And for the port `3090`. So the command to run server is `json-server db.json --port 3090` in the `dev-server`-folder.
+
 ### usage
 At the moment `Login`-button will send an action that will write JWT-token to localstorage and let the user in.
 
