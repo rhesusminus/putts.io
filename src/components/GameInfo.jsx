@@ -1,27 +1,40 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Typography from 'material-ui/Typography';
+import { withStyles } from 'material-ui/styles';
+import Avatar from 'material-ui/Avatar';
+import FolderIcon from 'material-ui-icons/Folder';
+import { ListItem, ListItemAvatar, ListItemText } from 'material-ui/List';
 import '../css/GameInfo.css';
 
+const styles = () => ({
+  gameListItem: {
+    paddingLeft: 0,
+  },
+});
+
 const GameInfo = props => {
-  const { title, desc } = props;
+  const { title, desc, classes } = props;
 
   return (
-    <div className="GameInfo">
-      <Typography type="title">{title}</Typography>
-      <br />
-      <Typography type="body1">{desc}</Typography>
-    </div>
-  )
+    <ListItem className={classes.gameListItem}>
+      <ListItemAvatar>
+        <Avatar>
+          <FolderIcon />
+        </Avatar>
+      </ListItemAvatar>
+      <ListItemText primary={title} secondary={desc} />
+    </ListItem>
+  );
 };
 
 GameInfo.propTypes = {
   title: PropTypes.string.isRequired,
-  desc: PropTypes.string
-}
+  classes: PropTypes.object.isRequired,
+  desc: PropTypes.string,
+};
 
 GameInfo.defaultProps = {
-  desc: ''
-}
+  desc: '',
+};
 
-export default GameInfo;
+export default withStyles(styles)(GameInfo);
