@@ -46,10 +46,6 @@
     "*.js": [
       "prettier --single-quote --trailing-comma all --write",
       "git add"
-    ],
-    "*.jsx": [
-      "prettier --single-quote --trailing-comma all --write",
-      "git add"
     ]
   }
 }

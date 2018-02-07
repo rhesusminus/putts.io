@@ -4,7 +4,6 @@ import { withStyles } from 'material-ui/styles';
 import Avatar from 'material-ui/Avatar';
 import FolderIcon from 'material-ui-icons/Folder';
 import { ListItem, ListItemAvatar, ListItemText } from 'material-ui/List';
-import '../css/GameInfo.css';
 
 const styles = () => ({
   gameListItem: {
