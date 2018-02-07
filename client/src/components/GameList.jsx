@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { GameInfo } from './';
-import { fetchGames } from '../actions/games-actions';
 import { withStyles } from 'material-ui/styles';
 import Typography from 'material-ui/Typography';
 import List from 'material-ui/List';
+import { GameInfo } from './';
+import { fetchGames } from '../actions/games-actions';
 
 const styles = theme => ({
   title: {
@@ -15,9 +15,6 @@ const styles = theme => ({
 });
 
 class GameList extends React.Component {
-  state = {
-    dense: false,
-  };
 
   componentDidMount() {
     this.props.fetchGames();
@@ -25,7 +22,6 @@ class GameList extends React.Component {
 
   render() {
     const { gamesList, classes } = this.props;
-    const { dense } = this.state;
 
     return (
       <div className="GameList">
@@ -33,7 +29,7 @@ class GameList extends React.Component {
           Available games
         </Typography>
         <div className={classes.demo}>
-          <List dense={dense}>{gamesList.map(game => <GameInfo {...game} key={game.id} />)}</List>
+          <List>{gamesList.map(game => <GameInfo {...game} key={game.id} />)}</List>
         </div>
       </div>
     );
@@ -41,7 +37,7 @@ class GameList extends React.Component {
 }
 
 GameList.propTypes = {
-  fetchGames: PropTypes.func,
+  fetchGames: PropTypes.func.isRequired,
   gamesList: PropTypes.arrayOf(PropTypes.object).isRequired,
   classes: PropTypes.object.isRequired,
 };

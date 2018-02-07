@@ -4,8 +4,6 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 class Profile extends React.Component {
-  state = {};
-
   render() {
     const { email } = this.props;
 
