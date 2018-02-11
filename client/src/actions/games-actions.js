@@ -8,7 +8,7 @@ const receiveGames = gamesList => ({ type: GAMES_SUCCESS, payload: gamesList });
 export const fetchGames = () => dispatch => {
   dispatch({ type: GAMES_REQUEST });
   return axios
-    .get(`${API_URI}/games`)
+    .get(`${API_URI}/api/games`)
     .then(result => {
       dispatch(receiveGames(result));
     })
