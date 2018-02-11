@@ -12,7 +12,7 @@ const styles = () => ({
 });
 
 const GameInfo = props => {
-  const { title, desc, classes } = props;
+  const { title, description, classes } = props;
 
   return (
     <ListItem className={classes.gameListItem}>
@@ -21,19 +21,19 @@ const GameInfo = props => {
           <FolderIcon />
         </Avatar>
       </ListItemAvatar>
-      <ListItemText primary={title} secondary={desc} />
+      <ListItemText primary={title} secondary={description} />
     </ListItem>
   );
 };
 
 GameInfo.propTypes = {
   title: PropTypes.string.isRequired,
+  description: PropTypes.string,
   classes: PropTypes.object.isRequired,
-  desc: PropTypes.string,
 };
 
 GameInfo.defaultProps = {
-  desc: '',
+  description: '',
 };
 
 export default withStyles(styles)(GameInfo);

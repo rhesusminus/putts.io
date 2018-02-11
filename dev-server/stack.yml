@@ -1,0 +1,28 @@
+version: '3.1'
+
+services:
+  putts.io-dev-server:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: putts.io-dev-server
+    container_name: putts.io-dev-server
+    ports:
+      - 3090:3090
+
+  db:
+    image: postgres
+    restart: always
+    environment:
+      # Don't do this. This is fine in dev...I guess
+      # https://docs.docker.com/engine/swarm/secrets/
+      POSTGRES_PASSWORD: mysecretpassword
+      POSTGRES_USER: puttsio
+    ports:
+      - 5432:5432
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
