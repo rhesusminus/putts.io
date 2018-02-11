@@ -2,4 +2,3 @@
 yarn-error.log
 /build
 *.log
-.env*
