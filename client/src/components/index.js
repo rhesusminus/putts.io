@@ -9,3 +9,4 @@ export { default as DashboardLayout } from './DashboardLayout';
 export { default as GameList } from './GameList';
 export { default as GameInfo } from './GameInfo';
 export { default as PasswordRecovery } from './PasswordRecovery';
+export { default as GoogleLoginButton } from './GoogleLoginButton';
