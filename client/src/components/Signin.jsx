@@ -8,6 +8,7 @@ import { withStyles } from 'material-ui/styles';
 import Typography from 'material-ui/Typography';
 import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
+import { GoogleLoginButton } from './';
 import '../css/Signin.css';
 
 const styles = theme => ({
@@ -24,6 +25,8 @@ class Signin extends React.Component {
     email: '',
     password: '',
   };
+
+  componentDidMount() {}
 
   handleSubmit = event => {
     const { email, password } = this.state;
@@ -90,10 +93,7 @@ class Signin extends React.Component {
             </Button>
             <br />
             <br />
-            <Button raised color="secondary" disabled className={classes.button}>
-              Sign in with Google
-            </Button>
-            <br />
+            <GoogleLoginButton />
             <br />
             <Button raised color="secondary" disabled className={classes.button}>
               Continue with Facebook

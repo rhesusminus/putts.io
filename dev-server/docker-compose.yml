@@ -1,7 +1,7 @@
-version: '3.1'
+version: '3.3'
 
 services:
-  putts.io-dev-server:
+  api:
     build:
       context: ./
       dockerfile: Dockerfile
@@ -10,9 +10,9 @@ services:
     ports:
       - 3090:3090
 
-  db:
+  database:
+    container_name: database
     image: postgres
-    restart: always
     environment:
       # Don't do this. This is fine in dev...I guess
       # https://docs.docker.com/engine/swarm/secrets/
@@ -23,6 +23,5 @@ services:
 
   adminer:
     image: adminer
-    restart: always
     ports:
       - 8080:8080
