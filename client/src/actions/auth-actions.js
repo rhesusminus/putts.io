@@ -25,7 +25,7 @@ export const loginUser = ({ email, password }) => dispatch => {
   localStorage.setItem('putts.io-jwt-token', token);
   dispatch(receiveLogin(token));
   dispatch(push('/dashboard'));
-  /*
+  /* commented out since I really don't have a login-service atm.
   return axios
     .post(`${API_URI}/signin`, { email, password })
     .then(({ data: { token } }) => {

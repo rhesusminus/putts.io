@@ -15,7 +15,6 @@ const styles = theme => ({
 });
 
 class GameList extends React.Component {
-
   componentDidMount() {
     this.props.fetchGames();
   }
@@ -39,7 +38,7 @@ class GameList extends React.Component {
 GameList.propTypes = {
   fetchGames: PropTypes.func.isRequired,
   gamesList: PropTypes.arrayOf(PropTypes.object).isRequired,
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.shape({}).isRequired,
 };
 
 const mapStateToProps = ({ games }) => ({ gamesList: games.gamesList });

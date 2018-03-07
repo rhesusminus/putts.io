@@ -29,7 +29,7 @@ const GameInfo = props => {
 GameInfo.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string,
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.shape({}).isRequired,
 };
 
 GameInfo.defaultProps = {
