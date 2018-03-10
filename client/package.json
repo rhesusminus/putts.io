@@ -29,6 +29,7 @@
     "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
+    "babel-eslint": "^8.2.2",
     "eslint": "^4.15.0",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-config-airbnb-base": "^12.1.0",
@@ -41,14 +42,14 @@
     "lint-staged": "^6.0.0",
     "prettier": "^1.10.2",
     "react-scripts": "1.0.17",
-    "redux-devtools-extension": "^2.13.2"
+    "redux-devtools-extension": "^2.13.2",
+    "standard": "^11.0.0"
+  },
+  "standard": {
+    "parser": "babel-eslint"
   },
   "lint-staged": {
-    "*.js": [
-      "prettier --single-quote --trailing-comma all --write",
-      "git add"
-    ],
-    "*.jsx": [
+    "*.{js,jsx}": [
       "prettier --single-quote --trailing-comma all --write",
       "git add"
     ]
