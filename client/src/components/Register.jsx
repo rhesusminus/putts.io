@@ -1,10 +1,10 @@
-import React from 'react';
-import { withRouter } from 'react-router-dom';
-import { withStyles } from 'material-ui/styles';
-import TextField from 'material-ui/TextField';
-import Button from 'material-ui/Button';
-import Input from 'material-ui/Input';
-import '../css/Register.css';
+import React from 'react'
+import { withRouter } from 'react-router-dom'
+import { withStyles } from 'material-ui/styles'
+import TextField from 'material-ui/TextField'
+import Button from 'material-ui/Button'
+import Input from 'material-ui/Input'
+import '../css/Register.css'
 
 const styles = theme => ({
   textField: {
@@ -13,7 +13,7 @@ const styles = theme => ({
   button: {
     width: '100%'
   }
-});
+})
 
 class Register extends React.Component {
   state = {
@@ -21,32 +21,32 @@ class Register extends React.Component {
     email: '',
     displayName: '',
     file: null
-  };
+  }
 
   handleFileChange = event => {
-    this.setState({ file: event.target.files[0] });
-  };
+    this.setState({ file: event.target.files[0] })
+  }
 
   handleInputChange = event => {
-    const target = event.target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
-    const name = target.name;
+    const target = event.target
+    const value = target.type === 'checkbox' ? target.checked : target.value
+    const name = target.name
 
-    this.setState({ [name]: value });
-  };
+    this.setState({ [name]: value })
+  }
 
   handleCancel = event => {
-    this.props.history.push('/');
-  };
+    this.props.history.push('/')
+  }
 
   handleFormSubmit = event => {
-    event.preventDefault();
+    event.preventDefault()
     // send action from here
-  };
+  }
 
   render() {
-    const { name, email, displayName } = this.state;
-    const { classes } = this.props;
+    const { name, email, displayName } = this.state
+    const { classes } = this.props
 
     return (
       <main>
@@ -100,8 +100,8 @@ class Register extends React.Component {
           </form>
         </div>
       </main>
-    );
+    )
   }
 }
 
-export default withStyles(styles)(withRouter(Register));
+export default withStyles(styles)(withRouter(Register))

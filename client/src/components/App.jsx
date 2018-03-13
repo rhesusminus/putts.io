@@ -1,6 +1,6 @@
-import React from 'react';
-import { Route } from 'react-router-dom';
-import { Signin, PrivateRoute, Register, DashboardLayout, PasswordRecovery } from './';
+import React from 'react'
+import { Route } from 'react-router-dom'
+import { Signin, PrivateRoute, Register, DashboardLayout, PasswordRecovery } from './'
 
 const App = () => (
   <div className="App">
@@ -9,6 +9,6 @@ const App = () => (
     <Route path="/password-recovery" component={PasswordRecovery} />
     <PrivateRoute path="/dashboard" component={DashboardLayout} />
   </div>
-);
+)
 
-export default App;
+export default App

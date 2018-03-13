@@ -1,12 +1,10 @@
-import React from 'react';
-import '../css/GoogleLoginButton.css';
+import React from 'react'
+import '../css/GoogleLoginButton.css'
 
 class GoogleLoginButton extends React.Component {
   handleSuccess = user => {
-    console.log('user:', user);
-  };
-
-  handleFailure = () => {};
+    console.log('user:', user)
+  }
 
   componentDidMount() {
     /*
@@ -30,8 +28,8 @@ class GoogleLoginButton extends React.Component {
       longtitle: true,
       theme: 'dark',
       onsuccess: this.handleSuccess,
-      onfailure: this.handleFailure,
-    });
+      onfailure: this.handleFailure
+    })
   }
 
   render() {
@@ -39,8 +37,8 @@ class GoogleLoginButton extends React.Component {
       <div className="GoogleLoginButton" ref={div => (this.googleLogin = div)}>
         <div id="google-signin" />
       </div>
-    );
+    )
   }
 }
 
-export default GoogleLoginButton;
+export default GoogleLoginButton

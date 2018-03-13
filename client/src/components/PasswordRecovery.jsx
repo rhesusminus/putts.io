@@ -1,14 +1,14 @@
-import React from 'react';
-import { withStyles } from 'material-ui/styles';
-import Typography from 'material-ui/Typography';
-import TextField from 'material-ui/TextField';
-import '../css/PasswordRecovery.css';
+import React from 'react'
+import { withStyles } from 'material-ui/styles'
+import Typography from 'material-ui/Typography'
+import TextField from 'material-ui/TextField'
+import '../css/PasswordRecovery.css'
 
 const styles = theme => ({
   textField: {
     width: '100%'
   }
-});
+})
 
 class PasswordRecovery extends React.Component {
   state = {
@@ -16,16 +16,16 @@ class PasswordRecovery extends React.Component {
   }
 
   handleInputChange = event => {
-    const target = event.target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
-    const name = target.name;
+    const target = event.target
+    const value = target.type === 'checkbox' ? target.checked : target.value
+    const name = target.name
 
-    this.setState({ [name]: value });
-  };
+    this.setState({ [name]: value })
+  }
 
   render() {
-    const { classes } = this.props;
-    const { registeredEmail } = this.state;
+    const { classes } = this.props
+    const { registeredEmail } = this.state
 
     return (
       <div className="PasswordRecovery">
@@ -42,8 +42,8 @@ class PasswordRecovery extends React.Component {
           onChange={this.handleInputChange}
         />
       </div>
-    );
+    )
   }
 }
 
-export default withStyles(styles)(PasswordRecovery);
+export default withStyles(styles)(PasswordRecovery)
