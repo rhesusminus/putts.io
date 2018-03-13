@@ -1,51 +1,51 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import { logoutUser } from '../actions/auth-actions';
-import { withRouter } from 'react-router-dom';
-import { withStyles } from 'material-ui/styles';
-import AppBar from 'material-ui/AppBar';
-import Toolbar from 'material-ui/Toolbar';
-import Typography from 'material-ui/Typography';
-import IconButton from 'material-ui/IconButton';
-import MenuIcon from 'material-ui-icons/Menu';
-import AccountCircle from 'material-ui-icons/AccountCircle';
-import Menu, { MenuItem } from 'material-ui/Menu';
-import '../css/Header.css';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import { logoutUser } from '../actions/auth-actions'
+import { withRouter } from 'react-router-dom'
+import { withStyles } from 'material-ui/styles'
+import AppBar from 'material-ui/AppBar'
+import Toolbar from 'material-ui/Toolbar'
+import Typography from 'material-ui/Typography'
+import IconButton from 'material-ui/IconButton'
+import MenuIcon from 'material-ui-icons/Menu'
+import AccountCircle from 'material-ui-icons/AccountCircle'
+import Menu, { MenuItem } from 'material-ui/Menu'
+import '../css/Header.css'
 
 const styles = {
   flex: {
-    flex: 1,
+    flex: 1
   },
   menuButton: {
     marginLeft: -12,
-    marginRight: 20,
-  },
-};
+    marginRight: 20
+  }
+}
 
 class Header extends React.Component {
   state = {
-    anchorEl: null,
-  };
+    anchorEl: null
+  }
 
   handleMenu = event => {
-    this.setState({ anchorEl: event.currentTarget });
-  };
+    this.setState({ anchorEl: event.currentTarget })
+  }
 
   handleClose = () => {
-    this.setState({ anchorEl: null });
-  };
+    this.setState({ anchorEl: null })
+  }
 
   handleProfileClick = () => {
-    this.setState({ anchorEl: null });
-    this.props.history.push('/dashboard/profile');
-  };
+    this.setState({ anchorEl: null })
+    this.props.history.push('/dashboard/profile')
+  }
 
   render() {
-    const { classes, logoutUser } = this.props;
-    const { anchorEl } = this.state;
-    const open = Boolean(anchorEl);
+    const { classes, logoutUser } = this.props
+    const { anchorEl } = this.state
+    const open = Boolean(anchorEl)
 
     return (
       <header>
@@ -76,11 +76,11 @@ class Header extends React.Component {
                 anchorEl={anchorEl}
                 anchorOrigin={{
                   vertical: 'top',
-                  horizontal: 'right',
+                  horizontal: 'right'
                 }}
                 transformOrigin={{
                   vertical: 'top',
-                  horizontal: 'right',
+                  horizontal: 'right'
                 }}
                 open={open}
                 onClose={this.handleClose}
@@ -93,16 +93,16 @@ class Header extends React.Component {
           </Toolbar>
         </AppBar>
       </header>
-    );
+    )
   }
 }
 
 Header.propTypes = {
   classes: PropTypes.object.isRequired,
-  logoutUser: PropTypes.func.isRequired,
-};
+  logoutUser: PropTypes.func.isRequired
+}
 
-const mapStateToProps = ({ auth }) => ({ isAuthenticated: auth.isAuthenticated });
-const mapDispatchToProps = dispatch => bindActionCreators({ logoutUser }, dispatch);
+const mapStateToProps = ({ auth }) => ({ isAuthenticated: auth.isAuthenticated })
+const mapDispatchToProps = dispatch => bindActionCreators({ logoutUser }, dispatch)
 
-export default withStyles(styles)(withRouter(connect(mapStateToProps, mapDispatchToProps)(Header)));
+export default withStyles(styles)(withRouter(connect(mapStateToProps, mapDispatchToProps)(Header)))

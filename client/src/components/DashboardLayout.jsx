@@ -1,6 +1,6 @@
-import React from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
-import { Header, Profile, GameList } from './';
+import React from 'react'
+import { Switch, Route, Redirect } from 'react-router-dom'
+import { Header, Profile, GameList } from './'
 
 const DashboardLayout = () => (
   <div className="Dashboard">
@@ -13,6 +13,6 @@ const DashboardLayout = () => (
       </Switch>
     </main>
   </div>
-);
+)
 
-export default DashboardLayout;
+export default DashboardLayout
