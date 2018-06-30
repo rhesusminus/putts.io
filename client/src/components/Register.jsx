@@ -88,12 +88,12 @@ class Register extends React.Component {
             <br />
             <br />
             <div className="Register-buttons">
-              <Button raised color="primary" className={classes.button}>
+              <Button variant="raised" color="primary" className={classes.button}>
                 Register new user
               </Button>
               <br />
               <br />
-              <Button raised color="secondary" onClick={this.handleCancel} className={classes.button}>
+              <Button variant="raised" color="secondary" onClick={this.handleCancel} className={classes.button}>
                 Cancel
               </Button>
             </div>
