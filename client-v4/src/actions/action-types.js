@@ -1,0 +1,5 @@
+export const CALL_API = 'CALL_API'
+export const SELECT_GAME = 'SELECT_GAME'
+export const GAMES_REQUEST = 'GAMES_REQUEST'
+export const GAMES_SUCCESS = 'GAMES_SUCCESS'
+export const GAMES_FAILURE = 'GAMES_FAILURE'

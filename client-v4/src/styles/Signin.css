@@ -1,0 +1,16 @@
+.Signin .page__content {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.Signin ons-button {
+  text-align: center;
+  margin: 6px;
+}
+
+.Signin ons-input {
+  margin: 6px;
+}
