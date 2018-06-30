@@ -1,15 +1,16 @@
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Toolbar, ToolbarButton, BackButton, Icon } from 'react-onsenui'
 import '../styles/AppToolbar.css'
 
-class AppToolbar extends PureComponent {
+class AppToolbar extends Component {
   static defaultProps = {
     title: 'defaultTitle'
   }
 
   render() {
-    const { title, showMenuIcon, onClick } = this.props
+    const { title, showMenuIcon, onClick, toolbarType } = this.props
+    console.log('toolbarType:', toolbarType)
 
     return (
       <Toolbar className="AppToolbar">
@@ -31,7 +32,7 @@ class AppToolbar extends PureComponent {
 
 AppToolbar.propTypes = {
   title: PropTypes.string,
-  menu: PropTypes.bool
+  showMenuIcon: PropTypes.bool
 }
 
 export default AppToolbar

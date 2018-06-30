@@ -38,6 +38,7 @@ class GameList extends Component {
 GameList.propTypes = {
   fetchGames: PropTypes.func.isRequired,
   selectGame: PropTypes.func.isRequired,
+  navigate: PropTypes.func.isRequired,
   list: PropTypes.array
 }
 
