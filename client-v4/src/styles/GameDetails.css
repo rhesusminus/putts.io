@@ -1,0 +1,22 @@
+.GameDetails {
+}
+
+.GameDetails__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  background-image: url('../static/images/forest_1_640x360.jpg');
+  background-repeat: no-repeat;
+  background-size: 100% 10em;
+  height: 10em;
+  color: white;
+}
+
+.GameDetails__desc {
+  color: black;
+}
+
+.GameDetails__desc ons-button {
+  margin: 10em 0 0 0;
+}
