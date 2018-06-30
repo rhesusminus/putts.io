@@ -1,10 +1,15 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { changeToolbarType, changeToolbarTitle } from '../actions'
 import { Button } from 'react-onsenui'
 import '../styles/GameDetails.css'
 
 class GameDetails extends Component {
+  componentDidMount() {
+    this.props.changeToolbarTitle(this.props.game.name)
+    this.props.changeToolbarType('game')
+  }
   render() {
     const { name, longDesc } = this.props.game
 
@@ -36,5 +41,5 @@ const mapStateToProps = ({ games }) => {
 
 export default connect(
   mapStateToProps,
-  null
+  { changeToolbarType, changeToolbarTitle }
 )(GameDetails)

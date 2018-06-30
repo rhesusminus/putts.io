@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { fetchGames, selectGame } from '../actions'
+import { fetchGames, selectGame, changeToolbarType, changeToolbarTitle } from '../actions'
 import { List, ListItem, ListHeader } from 'react-onsenui'
 
 class GameList extends Component {
@@ -11,6 +11,8 @@ class GameList extends Component {
 
   componentDidMount() {
     this.props.fetchGames()
+    this.props.changeToolbarType('normal')
+    this.props.changeToolbarTitle('putts.io')
   }
 
   handleGameClick = id => {
@@ -46,5 +48,5 @@ const mapStateToProps = ({ games }) => ({ list: games.list })
 
 export default connect(
   mapStateToProps,
-  { fetchGames, selectGame }
+  { fetchGames, selectGame, changeToolbarType, changeToolbarTitle }
 )(GameList)
