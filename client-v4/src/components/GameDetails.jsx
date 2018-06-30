@@ -1,15 +1,20 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 import { Button } from 'react-onsenui'
+import '../styles/GameDetails.css'
 
 class GameDetails extends Component {
   render() {
+    const { name, longDesc } = this.props.game
+
     return (
       <div className="GameDetails">
         <div className="GameDetails__header">
-          <h1>name</h1>
+          <h1>{name}</h1>
         </div>
         <div className="GameDetails__desc">
-          longDesc
+          {longDesc}
           <Button modifier="large" onClick={() => console.log('naak!')}>
             START GAME
           </Button>
@@ -19,4 +24,17 @@ class GameDetails extends Component {
   }
 }
 
-export default GameDetails
+GameDetails.propTypes = {
+  game: PropTypes.object.isRequired
+}
+
+const mapStateToProps = ({ games }) => {
+  const game = games.list.filter(game => game.id === games.selectedGame)
+
+  return { game: game[0] }
+}
+
+export default connect(
+  mapStateToProps,
+  null
+)(GameDetails)

@@ -41,7 +41,7 @@ GameList.propTypes = {
   list: PropTypes.array
 }
 
-const mapStateToProps = state => ({ list: state.games.list })
+const mapStateToProps = ({ games }) => ({ list: games.list })
 
 export default connect(
   mapStateToProps,
