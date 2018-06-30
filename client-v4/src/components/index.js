@@ -1,2 +1,6 @@
 export { default as GameDetails } from './GameDetails'
 export { default as UserImage } from './UserImage'
+export { default as Profile } from './Profile'
+export { default as GameList } from './GameList'
+export { default as Signin } from './Signin'
+export { default as Dashboard } from './layouts/Dashboard'
