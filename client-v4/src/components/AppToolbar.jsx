@@ -1,27 +1,23 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { Toolbar, ToolbarButton, BackButton, Icon } from 'react-onsenui'
+import { UserImage } from './'
 import '../styles/AppToolbar.css'
 
-class AppToolbar extends Component {
-  static defaultProps = {
-    title: 'defaultTitle'
-  }
-
+class AppToolbar extends PureComponent {
   render() {
-    const { title, showMenuIcon, onClick, toolbarType } = this.props
-    console.log('toolbarType:', toolbarType)
+    console.log('AppToolbar: render')
+    const { showMenuIcon, openMenu, toolbarType, toolbarTitle } = this.props
 
     return (
       <Toolbar className="AppToolbar">
-        <div className="left">
-          <BackButton>Back</BackButton>
-        </div>
-        <div className="center">{title}</div>
+        <div className="left">{toolbarType === 'game' ? <BackButton>Back</BackButton> : <UserImage size="32" />}</div>
+        <div className="center">{toolbarTitle}</div>
         <div className="right">
           {showMenuIcon && (
             <ToolbarButton>
-              <Icon icon="ion-navicon, material:md-menu" onClick={onClick} />
+              <Icon icon="ion-navicon, material:md-menu" onClick={openMenu} />
             </ToolbarButton>
           )}
         </div>
@@ -31,8 +27,15 @@ class AppToolbar extends Component {
 }
 
 AppToolbar.propTypes = {
-  title: PropTypes.string,
+  toolbarTitle: PropTypes.string.isRequired,
+  toolbarType: PropTypes.string.isRequired,
+  openMenu: PropTypes.func.isRequired,
   showMenuIcon: PropTypes.bool
 }
 
-export default AppToolbar
+const mapStateToProps = ({ ui: { toolbarType, toolbarTitle } }) => ({ toolbarType, toolbarTitle })
+
+export default connect(
+  mapStateToProps,
+  null
+)(AppToolbar)

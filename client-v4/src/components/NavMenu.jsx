@@ -6,12 +6,12 @@ const NavMenu = ({ closeMenu, openMenu, menuIsOpen, navigate }) => {
     {
       id: 1,
       title: 'Games',
-      url: '/dashboard'
+      url: ''
     },
     {
       id: 2,
       title: 'Profile',
-      url: '/dashboard/profile'
+      url: 'profile'
     },
     {
       id: 3,
@@ -19,6 +19,7 @@ const NavMenu = ({ closeMenu, openMenu, menuIsOpen, navigate }) => {
       url: '/signout'
     }
   ]
+
   const handleMenuClick = url => {
     closeMenu()
     navigate(url)
