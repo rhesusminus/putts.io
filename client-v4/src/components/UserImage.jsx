@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import '../styles/UserImage.css'
 
 const UserImage = ({ size }) => {
-  return <img className="UserImage" src={`http://placekitten.com/${size}/${size}`} alt="user" />
+  return <img className="UserImage" id="UserImage" src={`http://placekitten.com/${size}/${size}`} alt="user" />
 }
 
 UserImage.propTypes = {
