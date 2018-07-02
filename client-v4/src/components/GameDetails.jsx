@@ -10,6 +10,7 @@ class GameDetails extends Component {
     this.props.changeToolbarTitle(this.props.game.name)
     this.props.changeToolbarType('game')
   }
+
   render() {
     const { name, longDesc } = this.props.game
 
@@ -20,7 +21,7 @@ class GameDetails extends Component {
         </div>
         <div className="GameDetails__desc">
           {longDesc}
-          <Button modifier="large" onClick={() => console.log('naak!')}>
+          <Button modifier="large" onClick={() => this.props.navigate('play')}>
             START GAME
           </Button>
         </div>

@@ -29,7 +29,7 @@ class GameList extends Component {
   render() {
     return (
       <List
-        dataSource={this.props.list}
+        dataSource={this.props.gameList}
         renderRow={this.renderRow}
         renderHeader={() => <ListHeader>Available games</ListHeader>}
       />
@@ -40,11 +40,13 @@ class GameList extends Component {
 GameList.propTypes = {
   fetchGames: PropTypes.func.isRequired,
   selectGame: PropTypes.func.isRequired,
+  changeToolbarType: PropTypes.func.isRequired,
+  changeToolbarTitle: PropTypes.func.isRequired,
   navigate: PropTypes.func.isRequired,
   list: PropTypes.array
 }
 
-const mapStateToProps = ({ games }) => ({ list: games.list })
+const mapStateToProps = ({ games }) => ({ gameList: games.list })
 
 export default connect(
   mapStateToProps,

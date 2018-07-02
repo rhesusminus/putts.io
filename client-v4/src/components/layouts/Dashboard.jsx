@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react'
 import { Page, Splitter, SplitterContent } from 'react-onsenui'
-import NavMenu from '../NavMenu'
-import AppToolbar from '../AppToolbar'
+import { NavMenu, AppToolbar } from '../'
 
 class Dashboard extends PureComponent {
   state = {

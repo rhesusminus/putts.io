@@ -7,6 +7,7 @@ import '../styles/AppToolbar.css'
 
 class AppToolbar extends PureComponent {
   render() {
+    console.log('AppToolbar: render')
     const { showMenuIcon, openMenu, toolbarType, toolbarTitle } = this.props
 
     return (
@@ -28,11 +29,11 @@ class AppToolbar extends PureComponent {
 AppToolbar.propTypes = {
   toolbarTitle: PropTypes.string.isRequired,
   toolbarType: PropTypes.string.isRequired,
-  showMenuIcon: PropTypes.bool,
-  openMenu: PropTypes.func
+  openMenu: PropTypes.func.isRequired,
+  showMenuIcon: PropTypes.bool
 }
 
-const mapStateToProps = ({ ui }) => ({ toolbarType: ui.toolbarType, toolbarTitle: ui.toolbarTitle })
+const mapStateToProps = ({ ui: { toolbarType, toolbarTitle } }) => ({ toolbarType, toolbarTitle })
 
 export default connect(
   mapStateToProps,
