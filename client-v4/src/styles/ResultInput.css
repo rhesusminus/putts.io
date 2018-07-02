@@ -1,0 +1,19 @@
+.ResultInput {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.ResultInput > ons-button {
+  text-align: center;
+  line-height: 4em;
+  height: 4em;
+  width: calc(50% - 4px);
+}
+
+.ResultInput > ons-button:nth-child(even) {
+  margin: 4px 0 4px 4px;
+}
+
+.ResultInput > ons-button:nth-child(odd) {
+  margin: 4px 4px 4px 0;
+}

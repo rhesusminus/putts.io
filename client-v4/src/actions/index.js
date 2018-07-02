@@ -1,13 +1,31 @@
-import { CALL_API, GAMES_FAILURE, GAMES_REQUEST, GAMES_SUCCESS, SELECT_GAME } from './action-types'
+import {
+  CALL_API,
+  FETCH_GAMES_FAILURE,
+  FETCH_GAMES_REQUEST,
+  FETCH_GAMES_SUCCESS,
+  SELECT_GAME,
+  CHANGE_TOOLBAR_TYPE,
+  CHANGE_TOOLBAR_TITLE
+} from './action-types'
 
 export const selectGame = game => ({
   type: SELECT_GAME,
   payload: game
 })
 
+export const changeToolbarType = type => ({
+  type: CHANGE_TOOLBAR_TYPE,
+  payload: type
+})
+
+export const changeToolbarTitle = title => ({
+  type: CHANGE_TOOLBAR_TITLE,
+  payload: title
+})
+
 export const fetchGames = () => ({
   [CALL_API]: {
-    types: [GAMES_REQUEST, GAMES_SUCCESS, GAMES_FAILURE],
+    types: [FETCH_GAMES_REQUEST, FETCH_GAMES_SUCCESS, FETCH_GAMES_FAILURE],
     endpoint: 'games'
   }
 })

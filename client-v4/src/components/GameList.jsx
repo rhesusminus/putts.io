@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { fetchGames, selectGame } from '../actions'
+import { fetchGames, selectGame, changeToolbarType, changeToolbarTitle } from '../actions'
 import { List, ListItem, ListHeader } from 'react-onsenui'
 
 class GameList extends Component {
@@ -11,6 +11,8 @@ class GameList extends Component {
 
   componentDidMount() {
     this.props.fetchGames()
+    this.props.changeToolbarType('normal')
+    this.props.changeToolbarTitle('putts.io')
   }
 
   handleGameClick = id => {
@@ -27,7 +29,7 @@ class GameList extends Component {
   render() {
     return (
       <List
-        dataSource={this.props.list}
+        dataSource={this.props.gameList}
         renderRow={this.renderRow}
         renderHeader={() => <ListHeader>Available games</ListHeader>}
       />
@@ -38,12 +40,15 @@ class GameList extends Component {
 GameList.propTypes = {
   fetchGames: PropTypes.func.isRequired,
   selectGame: PropTypes.func.isRequired,
+  changeToolbarType: PropTypes.func.isRequired,
+  changeToolbarTitle: PropTypes.func.isRequired,
+  navigate: PropTypes.func.isRequired,
   list: PropTypes.array
 }
 
-const mapStateToProps = ({ games }) => ({ list: games.list })
+const mapStateToProps = ({ games }) => ({ gameList: games.list })
 
 export default connect(
   mapStateToProps,
-  { fetchGames, selectGame }
+  { fetchGames, selectGame, changeToolbarType, changeToolbarTitle }
 )(GameList)

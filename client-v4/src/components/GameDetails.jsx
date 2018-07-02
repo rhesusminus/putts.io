@@ -1,10 +1,16 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { changeToolbarType, changeToolbarTitle } from '../actions'
 import { Button } from 'react-onsenui'
 import '../styles/GameDetails.css'
 
 class GameDetails extends Component {
+  componentDidMount() {
+    this.props.changeToolbarTitle(this.props.game.name)
+    this.props.changeToolbarType('game')
+  }
+
   render() {
     const { name, longDesc } = this.props.game
 
@@ -15,7 +21,7 @@ class GameDetails extends Component {
         </div>
         <div className="GameDetails__desc">
           {longDesc}
-          <Button modifier="large" onClick={() => console.log('naak!')}>
+          <Button modifier="large" onClick={() => this.props.navigate('play')}>
             START GAME
           </Button>
         </div>
@@ -36,5 +42,5 @@ const mapStateToProps = ({ games }) => {
 
 export default connect(
   mapStateToProps,
-  null
+  { changeToolbarType, changeToolbarTitle }
 )(GameDetails)

@@ -1,4 +1,4 @@
-import { GAMES_FAILURE, GAMES_REQUEST, GAMES_SUCCESS, SELECT_GAME } from '../actions/action-types'
+import { FETCH_GAMES_REQUEST, FETCH_GAMES_SUCCESS, SELECT_GAME } from '../actions/action-types'
 
 const initialState = {
   isFetching: false,
@@ -7,24 +7,26 @@ const initialState = {
 }
 
 export default (state = initialState, action) => {
+  const { payload } = action
+
   switch (action.type) {
-    case GAMES_REQUEST:
+    case FETCH_GAMES_REQUEST:
       return {
         ...state,
         isFetching: true
       }
 
-    case GAMES_SUCCESS:
+    case FETCH_GAMES_SUCCESS:
       return {
         ...state,
-        list: action.payload,
+        list: payload,
         isFetching: false
       }
 
     case SELECT_GAME:
       return {
         ...state,
-        selectedGame: action.payload
+        selectedGame: payload
       }
 
     default:
