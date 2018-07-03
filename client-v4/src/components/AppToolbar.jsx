@@ -7,7 +7,6 @@ import '../styles/AppToolbar.css'
 
 class AppToolbar extends PureComponent {
   render() {
-    console.log('AppToolbar: render')
     const { showMenuIcon, openMenu, toolbarType, toolbarTitle } = this.props
 
     return (

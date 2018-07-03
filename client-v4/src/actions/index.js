@@ -5,7 +5,10 @@ import {
   FETCH_GAMES_SUCCESS,
   SELECT_GAME,
   CHANGE_TOOLBAR_TYPE,
-  CHANGE_TOOLBAR_TITLE
+  CHANGE_TOOLBAR_TITLE,
+  SEND_RESULT_REQUEST,
+  SEND_RESULT_SUCCESS,
+  SEND_RESULT_FAILURE
 } from './action-types'
 
 export const selectGame = game => ({
@@ -26,6 +29,7 @@ export const changeToolbarTitle = title => ({
 export const fetchGames = () => ({
   [CALL_API]: {
     types: [FETCH_GAMES_REQUEST, FETCH_GAMES_SUCCESS, FETCH_GAMES_FAILURE],
-    endpoint: 'games'
+    endpoint: 'games',
+    method: 'get'
   }
 })
