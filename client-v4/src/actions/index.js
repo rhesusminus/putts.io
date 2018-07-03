@@ -33,3 +33,12 @@ export const fetchGames = () => ({
     method: 'get'
   }
 })
+
+export const postResult = result => ({
+  [CALL_API]: {
+    types: [SEND_RESULT_REQUEST, SEND_RESULT_SUCCESS, SEND_RESULT_FAILURE],
+    endpoint: 'results',
+    method: 'post',
+    payload: result
+  }
+})

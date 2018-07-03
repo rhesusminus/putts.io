@@ -8,11 +8,14 @@ const callApi = method => endpoint => {
   const addOptions = () => {
     if (method === 'POST') {
       return {
+        method,
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json'
         }
       }
+    } else {
+      return null
     }
   }
 
@@ -33,15 +36,9 @@ export default state => next => action => {
   if (typeof callAPI === 'undefined') {
     return next(action)
   }
+  console.log('callAPI:', callAPI)
 
-  let { endpoint } = callAPI
-  const { types, method = '' } = callAPI
-
-  /*
-  if (typeof endpoint === 'function') {
-    endpoint = endpoint(state.getState())
-  }
-  */
+  const { endpoint, types, method = 'GET' } = callAPI
 
   validateAction(callAPI)
 
