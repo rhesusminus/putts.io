@@ -1,11 +1,22 @@
 import { CALL_API } from '../actions/action-types'
+import { validateAction } from './validate'
 
 const API_ROOT = process.env.REACT_APP_API_URI
 
-const callApi = endpoint => {
+const callApi = method => endpoint => {
   const fullUrl = endpoint.indexOf(API_ROOT) === -1 ? API_ROOT + endpoint : endpoint
+  const addOptions = () => {
+    if (method === 'POST') {
+      return {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        }
+      }
+    }
+  }
 
-  return fetch(fullUrl)
+  return fetch(fullUrl, addOptions())
     .then(response => {
       if (!response.ok) {
         return Promise.reject()
@@ -16,7 +27,7 @@ const callApi = endpoint => {
     .then(json => Object.assign([], json))
 }
 
-export default ({ getState, dispatch }) => next => action => {
+export default state => next => action => {
   const callAPI = action[CALL_API]
 
   if (typeof callAPI === 'undefined') {
@@ -24,25 +35,15 @@ export default ({ getState, dispatch }) => next => action => {
   }
 
   let { endpoint } = callAPI
-  const { types } = callAPI
+  const { types, method = '' } = callAPI
 
   /*
   if (typeof endpoint === 'function') {
-    endpoint = endpoint(getState())
+    endpoint = endpoint(state.getState())
   }
   */
 
-  if (typeof endpoint !== 'string') {
-    throw new Error('Specify a string endpoint URL.')
-  }
-
-  if (!Array.isArray(types) || types.length !== 3) {
-    throw new Error('Expected an array of three action types.')
-  }
-
-  if (!types.every(type => typeof type === 'string')) {
-    throw new Error('Expected action types to be strings.')
-  }
+  validateAction(callAPI)
 
   const actionWith = data => {
     const finalAction = Object.assign({}, action, data)
@@ -53,7 +54,7 @@ export default ({ getState, dispatch }) => next => action => {
   const [requestType, successType, failureType] = types
   next(actionWith({ type: requestType }))
 
-  return callApi(endpoint).then(
+  return callApi(method)(endpoint).then(
     response =>
       next(
         actionWith({
