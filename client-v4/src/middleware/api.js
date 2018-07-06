@@ -3,20 +3,24 @@ import { validateAction } from './validate'
 
 const API_ROOT = process.env.REACT_APP_API_URI
 
-const callApi = method => endpoint => {
+const createHeaders = method => {
+  if (method === 'POST') {
+    return {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    }
+  } else {
+    return null
+  }
+}
+
+const callApi = method => (endpoint, payload) => {
   const fullUrl = endpoint.indexOf(API_ROOT) === -1 ? API_ROOT + endpoint : endpoint
   const addOptions = () => {
     if (method === 'POST') {
-      return {
-        method,
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json'
-        }
-      }
-    } else {
-      return null
+      return { method, headers: createHeaders(method), body: JSON.stringify(payload) }
     }
+    return { method }
   }
 
   return fetch(fullUrl, addOptions())
@@ -38,7 +42,7 @@ export default state => next => action => {
   }
   console.log('callAPI:', callAPI)
 
-  const { endpoint, types, method = 'GET' } = callAPI
+  const { endpoint, types, method = 'GET', payload } = callAPI
 
   validateAction(callAPI)
 
@@ -48,10 +52,12 @@ export default state => next => action => {
     return finalAction
   }
 
+  console.log('actionWith:', actionWith)
+
   const [requestType, successType, failureType] = types
   next(actionWith({ type: requestType }))
 
-  return callApi(method)(endpoint).then(
+  return callApi(method.toUpperCase())(endpoint, payload).then(
     response =>
       next(
         actionWith({
@@ -63,7 +69,8 @@ export default state => next => action => {
       next(
         actionWith({
           type: failureType,
-          error: error.message || 'Something bad happened'
+          error: true,
+          payload: error.message || 'Something bad happened'
         })
       )
   )
