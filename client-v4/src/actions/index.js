@@ -39,6 +39,6 @@ export const postResult = result => ({
     types: [SEND_RESULT_REQUEST, SEND_RESULT_SUCCESS, SEND_RESULT_FAILURE],
     endpoint: 'results',
     method: 'post',
-    payload: result
+    payload: { result }
   }
 })
