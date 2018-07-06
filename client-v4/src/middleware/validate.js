@@ -18,6 +18,6 @@ export const validateAction = ({ endpoint, types, method }) => {
   }
 
   if (!isString(method) || !validMethod(method)) {
-    throw new Error(`Method should be a string. Allowed methods at the moment: ${allowedMethods}`)
+    throw new Error(`Method should be a string. Allowed methods at the moment are: ${allowedMethods}`)
   }
 }
