@@ -30,7 +30,7 @@ export const fetchGames = () => ({
   [CALL_API]: {
     types: [FETCH_GAMES_REQUEST, FETCH_GAMES_SUCCESS, FETCH_GAMES_FAILURE],
     endpoint: 'games',
-    method: 'get'
+    method: 'GET'
   }
 })
 
@@ -38,7 +38,7 @@ export const postResult = result => ({
   [CALL_API]: {
     types: [SEND_RESULT_REQUEST, SEND_RESULT_SUCCESS, SEND_RESULT_FAILURE],
     endpoint: 'results',
-    method: 'post',
+    method: 'POST',
     payload: { result }
   }
 })

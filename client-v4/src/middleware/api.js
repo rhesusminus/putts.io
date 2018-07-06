@@ -42,7 +42,7 @@ export default state => next => action => {
   }
   console.log('callAPI:', callAPI)
 
-  const { endpoint, types, method = 'GET', payload } = callAPI
+  const { endpoint, types, payload, method = 'GET' } = callAPI
 
   validateAction(callAPI)
 
