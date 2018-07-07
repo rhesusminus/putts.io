@@ -27,18 +27,20 @@ export const changeToolbarTitle = title => ({
 })
 
 export const fetchGames = () => ({
-  [CALL_API]: {
-    types: [FETCH_GAMES_REQUEST, FETCH_GAMES_SUCCESS, FETCH_GAMES_FAILURE],
+  type: CALL_API,
+  meta: {
+    method: 'GET',
     endpoint: 'games',
-    method: 'GET'
+    types: [FETCH_GAMES_REQUEST, FETCH_GAMES_SUCCESS, FETCH_GAMES_FAILURE]
   }
 })
 
 export const postResult = result => ({
-  [CALL_API]: {
-    types: [SEND_RESULT_REQUEST, SEND_RESULT_SUCCESS, SEND_RESULT_FAILURE],
-    endpoint: 'results',
+  type: CALL_API,
+  payload: { result },
+  meta: {
     method: 'POST',
-    payload: { result }
+    endpoint: 'results',
+    types: [SEND_RESULT_REQUEST, SEND_RESULT_SUCCESS, SEND_RESULT_FAILURE]
   }
 })

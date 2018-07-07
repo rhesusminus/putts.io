@@ -20,7 +20,7 @@ const callApi = method => (endpoint, payload) => {
     if (method === 'POST') {
       return { method, headers: createHeaders(method), body: JSON.stringify(payload) }
     }
-    return { method }
+    return null
   }
 
   return fetch(fullUrl, addOptions())
@@ -35,43 +35,33 @@ const callApi = method => (endpoint, payload) => {
 }
 
 export default state => next => action => {
-  const callAPI = action[CALL_API]
-
-  if (typeof callAPI === 'undefined') {
+  if (action.type !== CALL_API) {
     return next(action)
   }
-  console.log('callAPI:', callAPI)
 
-  const { endpoint, types, payload, method = 'GET' } = callAPI
+  const {
+    payload,
+    meta: { endpoint, types, method = 'GET' }
+  } = action
 
-  validateAction(callAPI)
+  console.log('CALL_API:', action)
 
-  const actionWith = data => {
-    const finalAction = Object.assign({}, action, data)
-    delete finalAction[CALL_API]
-    return finalAction
-  }
-
-  console.log('actionWith:', actionWith)
+  validateAction(action.meta)
 
   const [requestType, successType, failureType] = types
-  next(actionWith({ type: requestType }))
+  next({ type: requestType })
 
   return callApi(method.toUpperCase())(endpoint, payload).then(
     response =>
-      next(
-        actionWith({
-          type: successType,
-          payload: response
-        })
-      ),
+      next({
+        type: successType,
+        payload: response
+      }),
     error =>
-      next(
-        actionWith({
-          type: failureType,
-          error: true,
-          payload: error.message || 'Something bad happened'
-        })
-      )
+      next({
+        type: failureType,
+        error: true,
+        payload: error.message || 'Something bad happened'
+      })
   )
 }
