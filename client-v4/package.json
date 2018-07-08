@@ -4,8 +4,11 @@
   "private": true,
   "dependencies": {
     "@reach/router": "^1.1.1",
+    "axios": "^0.18.0",
+    "folktale": "^2.1.0",
     "onsenui": "^2.10.1",
     "prop-types": "^15.6.2",
+    "ramda": "^0.25.0",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-onsenui": "^1.11.1",
