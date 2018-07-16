@@ -1,33 +1,25 @@
-require('dotenv').config();
-import { transaction } from 'objection';
-import Game from '../models/Game';
+const express = require('express')
+const { Game } = require('../models/Game')
+const { all, id } = require('../db')
 
-const prefix = `${process.env.API_BASE}/games`;
+const router = express.Router()
 
-export default router => {
-  router.get(`${prefix}`, async (req, res) => {
-    try {
-      const games = await Game.query()
-        .skipUndefined()
-        .orderBy('id');
+router.get('/', (req, res) =>
+  all(Game, {})
+    .run()
+    .listen({
+      onResolved: result => res.send(result),
+      onRejected: error => res.send(error)
+    })
+)
 
-      res.send(games);
-    } catch (e) {
-      console.log(e);
-    }
-  });
+router.get('/:id', (req, res) => {
+  id(Game, req.params.id)
+    .run()
+    .listen({
+      onResolved: result => res.send(result),
+      onRejected: error => res.send(error)
+    })
+})
 
-  router.get(`${prefix}/:id`, async (req, res) => {
-    try {
-      const game = await Game.query().findById(req.params.id);
-
-      if (!game) {
-        createStatusCodeError(404);
-      }
-
-      res.send(game);
-    } catch (err) {
-      console.log(err);
-    }
-  });
-}
+module.exports = router

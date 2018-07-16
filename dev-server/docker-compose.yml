@@ -1,15 +1,6 @@
 version: '3.3'
 
 services:
-  api:
-    build:
-      context: ./
-      dockerfile: Dockerfile
-    image: putts.io-dev-server
-    container_name: putts.io-dev-server
-    ports:
-      - 3090:3090
-
   database:
     container_name: database
     image: postgres
