@@ -2,26 +2,26 @@ const { task } = require('folktale/concurrency/task')
 const { curry } = require('ramda')
 
 const all = curry((model, query) =>
-  task(async resolver => {
+  task(async ({ resolve, reject }) => {
     try {
       const res = await model
         .query()
         .skipUndefined()
         .orderBy('id')
-      resolver.resolved(res)
+      resolve(res)
     } catch (error) {
-      resolver.reject(error)
+      reject(error)
     }
   })
 )
 
 const id = curry((model, id) =>
-  task(async resolver => {
+  task(async ({ resolve, reject }) => {
     try {
       const res = await model.query().findById(id)
-      resolver.resolved(res)
+      resolve(res)
     } catch (error) {
-      resolver.reject(error)
+      reject(error)
     }
   })
 )
