@@ -1,7 +1,7 @@
 const { task } = require('folktale/concurrency/task')
 const { curry } = require('ramda')
 
-const all = curry((model, query) =>
+const all = model =>
   task(async ({ resolve, reject }) => {
     try {
       const res = await model
@@ -13,12 +13,36 @@ const all = curry((model, query) =>
       reject(error)
     }
   })
-)
 
-const id = curry((model, id) =>
+const allWhere = curry((model, where) => {
   task(async ({ resolve, reject }) => {
     try {
-      const res = await model.query().findById(id)
+      const res = await model.query().where(where)
+      resolve(res)
+    } catch (error) {
+      reject(error)
+    }
+  })
+})
+
+const allByUserId = curry((model, userId) => {
+  task(async ({ resolve, reject }) => {
+    try {
+      const res = await model.query().where('user', userId)
+      resolve(res)
+    } catch (error) {
+      reject(error)
+    }
+  })
+})
+
+const findOne = curry((model, id) =>
+  task(async ({ resolve, reject }) => {
+    try {
+      const res = await model
+        .query()
+        .findById(id)
+        .throwIfNotFound()
       resolve(res)
     } catch (error) {
       reject(error)
@@ -26,4 +50,4 @@ const id = curry((model, id) =>
   })
 )
 
-module.exports = { all, id }
+module.exports = { all, allByUserId, allWhere, findOne }
