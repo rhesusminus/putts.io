@@ -1,8 +1,8 @@
 const Model = require('objection').Model
 
-class Game extends Model {
+export default class User extends Model {
   static get tableName() {
-    return 'Game'
+    return 'User'
   }
 
   static get jsonSchema() {
@@ -12,12 +12,10 @@ class Game extends Model {
       properties: {
         id: { type: 'integer' },
         name: { type: 'string', minLength: 1, maxLength: 30 },
-        shortDesc: { type: 'string', minLength: 1, maxLength: 255 },
-        longDesc: { type: 'string' },
+        displayName: { type: 'string', minLength: 1, maxLength: 25 },
+        email: { type: 'string' },
         image: { type: 'string' }
       }
     }
   }
 }
-
-module.exports = { Game }

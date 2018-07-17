@@ -1,50 +1,25 @@
-require('dotenv').config();
-require('babel-polyfill');
-import { Model } from 'objection';
-import Knex from 'knex';
-import express from 'express';
-import winston from 'winston';
-import bodyParser from 'body-parser';
-import promiseRouter from 'express-promise-router';
-import cors from 'cors';
-import knexConfig from '../knexfile';
-import registerApi from './api';
+const express = require('express')
+const bodyParser = require('body-parser')
+const cors = require('cors')
+const Knex = require('knex')
+const Model = require('objection').Model
+const knexConfig = require('../knexfile')
 
-const knex = Knex(knexConfig[process.env.NODE_ENV]);
-Model.knex(knex);
+const games = require('./routes/games')
 
-const port = process.env.PORT || 3090;
-const router = promiseRouter();
-const logger = winston.createLogger({
-  level: 'info',
-  format: winston.format.json(),
-  transports: [
-    // - Write to all logs with level `info` and below to `combined.log`
-    // - Write all logs error (and below) to `error.log`.
-    new winston.transports.File({ filename: 'error.log', level: 'error' }),
-    new winston.transports.File({ filename: 'combined.log' })
-  ]
-});
+const knex = Knex(knexConfig[process.env.NODE_ENV])
+Model.knex(knex)
 
 const app = express()
   .use(cors())
   .use(bodyParser.json())
-  .use(router);
 
-registerApi(router);
+app.use('/games', games)
 
-// Error handling. The `ValidationError` instances thrown by objection.js have a `statusCode`
-// property that is sent as the status code of the response.
-//
-// NOTE: This is not a good error handler, this is the simplest one. See the error handing
-//       recipe for a better handler: http://vincit.github.io/objection.js/#error-handling
-app.use((err, req, res, next) => {
-  if (err) {
-    res.status(err.statusCode || err.status || 500).send(err.data || err.message || {});
-  } else {
-    next();
-  }
-});
+const PORT = process.env.PORT || 3090
 
-app.listen(port);
-console.log(`putts.io-dev-server started at port: ${port}`);
+app.get('/', (req, res) => {
+  res.send('hello world')
+})
+
+app.listen(PORT, () => console.log(`App listening on port ${PORT}!`))
