@@ -9,7 +9,6 @@ router.get('/', (req, res) => {
     .run()
     .listen({
       onResolved: result => {
-        console.log('result:', result)
         res.send(result)
       },
       onRejected: error => res.send(error)
