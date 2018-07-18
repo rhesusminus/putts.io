@@ -1,23 +1,24 @@
 import { task } from 'folktale/concurrency/task'
-import { concat, curry } from 'ramda'
+import { curry } from 'ramda'
 import axios from 'axios'
 
 const API_ROOT = process.env.REACT_APP_API_URI
-const createApiUrl = endpoint => (endpoint.indexOf(API_ROOT) === -1 ? concat(API_ROOT, endpoint) : endpoint)
+const request = axios.create({
+  baseURL: API_ROOT
+})
 
 const Http = curry((method, endpoint, data) =>
-  task(async resolver => {
+  task(async ({ resolve, reject }) => {
     try {
-      const res = await axios({
+      const res = await request(endpoint, {
         method,
-        url: createApiUrl(endpoint),
         data
       })
-      resolver.resolve(res)
+      resolve(res)
     } catch (error) {
-      resolver.reject(error)
+      reject(error)
     }
   })
 )
 
-export { Http, createApiUrl }
+export { Http }
