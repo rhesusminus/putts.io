@@ -29,5 +29,29 @@ describe('actions', () => {
     expect(actions.changeToolbarTitle(title)).toEqual(expectedAction)
   })
 
-  it('should create and action to ', () => {})
+  it('should create an action to fetch games from server', () => {
+    const expectedAction = {
+      type: types.CALL_API,
+      meta: {
+        method: 'GET',
+        endpoint: 'games',
+        types: [types.FETCH_GAMES_REQUEST, types.FETCH_GAMES_SUCCESS, types.FETCH_GAMES_FAILURE]
+      }
+    }
+    expect(actions.fetchGames()).toEqual(expectedAction)
+  })
+
+  it('should create an action to post results to the server', () => {
+    const result = 5
+    const expectedAction = {
+      type: types.CALL_API,
+      payload: { result },
+      meta: {
+        method: 'POST',
+        endpoint: 'results',
+        types: [types.SEND_RESULT_REQUEST, types.SEND_RESULT_SUCCESS, types.SEND_RESULT_FAILURE]
+      }
+    }
+    expect(actions.postResult(result)).toEqual(expectedAction)
+  })
 })
