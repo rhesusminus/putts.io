@@ -1,53 +1,32 @@
 const { task } = require('folktale/concurrency/task')
+var Future = require('fluture')
 const { curry } = require('ramda')
 
 const all = model =>
-  task(async ({ resolve, reject }) => {
-    try {
-      const res = await model
-        .query()
-        .skipUndefined()
-        .orderBy('id')
-      resolve(res)
-    } catch (error) {
-      reject(error)
-    }
-  })
-
-const allWhere = curry((model, where) => {
-  task(async ({ resolve, reject }) => {
-    try {
-      const res = await model.query().where(where)
-      resolve(res)
-    } catch (error) {
-      reject(error)
-    }
-  })
-})
+  Future.tryP(() =>
+    model
+      .query()
+      .skipUndefined()
+      .orderBy('id')
+      .then()
+  )
 
 const allByUserId = curry((model, userId) => {
-  task(async ({ resolve, reject }) => {
-    try {
-      const res = await model.query().where('user', userId)
-      resolve(res)
-    } catch (error) {
-      reject(error)
-    }
+  Future.tryP(() => {
+    model
+      .query()
+      .where('user', userId)
+      .then()
   })
 })
 
 const findOne = curry((model, id) =>
-  task(async ({ resolve, reject }) => {
-    try {
-      const res = await model
-        .query()
-        .findById(id)
-        .throwIfNotFound()
-      resolve(res)
-    } catch (error) {
-      reject(error)
-    }
-  })
+  Future.tryP(() =>
+    model
+      .query()
+      .findById(id)
+      .throwIfNotFound()
+  )
 )
 
-module.exports = { all, allByUserId, allWhere, findOne }
+module.exports = { all, allByUserId, findOne }
