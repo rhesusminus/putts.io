@@ -4,24 +4,10 @@ const { all, findOne } = require('../db')
 
 const router = express.Router()
 
-router.get('/', (req, res) =>
-  all(Game, {})
-    .run()
-    .listen({
-      onResolved: result => {
-        res.send(result)
-      },
-      onRejected: error => res.send(error)
-    })
-)
+router.get('/', (_, res) => all(Game).fork(error => console.log(error), result => res.send(result)))
 
 router.get('/:id', (req, res) =>
-  findOne(Game, req.params.id)
-    .run()
-    .listen({
-      onResolved: result => res.send(result),
-      onRejected: error => res.send(error)
-    })
+  findOne(Game, req.params.id).fork(error => res.send(error), result => res.send(result))
 )
 
 module.exports = router

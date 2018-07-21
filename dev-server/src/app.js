@@ -18,8 +18,4 @@ app.use('/games', games)
 
 const PORT = process.env.PORT || 3090
 
-app.get('/', (req, res) => {
-  res.send('hello world')
-})
-
 app.listen(PORT, () => console.log(`App listening on port ${PORT}!`))
