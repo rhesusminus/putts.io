@@ -14,3 +14,7 @@
 .Signin ons-input {
   margin: 6px;
 }
+
+.Signin .error {
+  color: red;
+}

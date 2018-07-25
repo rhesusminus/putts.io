@@ -1,6 +1,6 @@
 import { CALL_API } from '../actions/action-types'
 import { Http } from '../utils'
-import { validateAction } from '../validations/validate'
+import { validateAction } from '../validations/action-validations'
 
 export default state => next => action => {
   if (action.type !== CALL_API) {
