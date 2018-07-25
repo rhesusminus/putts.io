@@ -21,4 +21,6 @@ const Http = curry((method, endpoint, data) =>
   })
 )
 
-export { Http }
+const preventDefault = event => event.preventDefault()
+
+export { Http, preventDefault }
