@@ -42,16 +42,30 @@ class Signin extends Component {
     }
   }
 
+  validateInput = () => {
+    const { email, password } = this.state
+    const emailError = isEmailValid(email).matchWith({
+      Success: () => false,
+      Failure: () => true
+    })
+    const passwordError = isPasswordValid(password).matchWith({
+      Success: () => false,
+      Failure: () => true
+    })
+
+    return { emailError, passwordError }
+  }
+
   handleInputChange = ({ target }) => {
     const { email, password, error } = this.state
 
     const emailError = isEmailValid(email).matchWith({
-      Success: ({ value }) => false,
-      Failure: ({ value }) => true
+      Success: () => false,
+      Failure: () => true
     })
     const passwordError = isPasswordValid(password).matchWith({
-      Success: ({ value }) => false,
-      Failure: ({ value }) => true
+      Success: () => false,
+      Failure: () => true
     })
     const value = target.type === 'checkbox' ? target.checked : target.value
 

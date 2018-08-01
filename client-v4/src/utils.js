@@ -2,9 +2,8 @@ import { task } from 'folktale/concurrency/task'
 import { curry } from 'ramda'
 import axios from 'axios'
 
-const API_ROOT = process.env.REACT_APP_API_URI
 const request = axios.create({
-  baseURL: API_ROOT
+  baseURL: process.env.REACT_APP_API_URI
 })
 
 const Http = curry((method, endpoint, data) =>
