@@ -11,10 +11,10 @@ export default state => next => action => {
     payload,
     meta: { endpoint, types, method = 'GET' }
   } = action
+  const [requestType, successType, failureType] = types
 
   validateAction(action.meta)
 
-  const [requestType, successType, failureType] = types
   next({ type: requestType })
 
   Http(method, endpoint, payload)
