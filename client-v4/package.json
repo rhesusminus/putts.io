@@ -5,6 +5,7 @@
   "dependencies": {
     "@reach/router": "^1.1.1",
     "axios": "^0.18.0",
+    "fluture": "^9.0.1",
     "folktale": "^2.1.0",
     "onsenui": "^2.10.1",
     "prop-types": "^15.6.2",

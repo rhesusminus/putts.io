@@ -17,10 +17,8 @@ export default state => next => action => {
 
   next({ type: requestType })
 
-  Http(method, endpoint, payload)
-    .run()
-    .listen({
-      onResolved: res => next({ type: successType, payload: res.data }),
-      onRejected: error => next({ type: failureType, error: true, payload: error.message || 'Something bad happened' })
-    })
+  Http(method, endpoint, payload).fork(
+    error => next({ type: failureType, error: true, payload: error.message || 'something bad happened' }),
+    result => next({ type: successType, payload: result.data })
+  )
 }
