@@ -1,23 +1,18 @@
-import { task } from 'folktale/concurrency/task'
+import { tryP } from 'fluture'
 import { curry } from 'ramda'
 import axios from 'axios'
 
 const request = axios.create({
-  baseURL: process.env.REACT_APP_API_URI
+  baseURL: process.env.REACT_APP_API_URI || 'http://localhost:3090/'
 })
 
 const Http = curry((method, endpoint, data) =>
-  task(async ({ resolve, reject }) => {
-    try {
-      const res = await request(endpoint, {
-        method,
-        data
-      })
-      resolve(res)
-    } catch (error) {
-      reject(error)
-    }
-  })
+  tryP(() =>
+    request(endpoint, {
+      method,
+      data
+    })
+  )
 )
 
 const preventDefault = event => event.preventDefault()
