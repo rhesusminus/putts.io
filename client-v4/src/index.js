@@ -7,7 +7,7 @@ import { Profile, GameList, GameDetails, Signin, Dashboard, Game1 } from './comp
 import './styles/index.css'
 import 'onsenui/css/onsenui.css'
 import 'onsenui/css/onsen-css-components.css'
-// import registerServiceWorker from './registerServiceWorker'
+import registerServiceWorker from './registerServiceWorker'
 
 const store = configureStore()
 
@@ -25,4 +25,5 @@ render(
   </Provider>,
   document.getElementById('root')
 )
-// registerServiceWorker()
+
+registerServiceWorker()
