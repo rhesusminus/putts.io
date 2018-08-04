@@ -1,8 +1,8 @@
 const express = require('express')
-const bodyParser = require('body-parser')
-const cors = require('cors')
 const Knex = require('knex')
 const Model = require('objection').Model
+const cors = require('cors')
+const bodyParser = require('body-parser')
 const knexConfig = require('../knexfile')
 
 const games = require('./routes/games')

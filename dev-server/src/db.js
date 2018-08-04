@@ -1,4 +1,3 @@
-const { task } = require('folktale/concurrency/task')
 var Future = require('fluture')
 const { curry } = require('ramda')
 
@@ -10,6 +9,15 @@ const all = model =>
       .orderBy('id')
       .then()
   )
+
+const post = curry((model, data) => {
+  Future.tryP(() =>
+    model
+      .query()
+      .insert(data)
+      .then()
+  )
+})
 
 const allByUserId = curry((model, userId) => {
   Future.tryP(() => {
@@ -26,7 +34,8 @@ const findOne = curry((model, id) =>
       .query()
       .findById(id)
       .throwIfNotFound()
+      .then()
   )
 )
 
-module.exports = { all, allByUserId, findOne }
+module.exports = { all, post, allByUserId, findOne }
