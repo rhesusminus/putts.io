@@ -1,12 +1,9 @@
 import { createStore, applyMiddleware, compose } from 'redux'
-import thunk from 'redux-thunk'
-import api from '../middleware/api'
+import middleware from './middlewares'
 import rootReducer from '../reducers'
 
 export default preloadedState => {
   const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
-
-  const middleware = [thunk, api]
 
   const enhancer = composeEnhancers(applyMiddleware(...middleware))
 
